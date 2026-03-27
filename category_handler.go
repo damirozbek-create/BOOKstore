@@ -7,8 +7,9 @@ import (
 )
 
 func GetCategories(w http.ResponseWriter, r *http.Request) {
-	var list []models.Category
+	w.Header().Set("Content-Type", "application/json")
 
+	var list []models.Category
 	for _, c := range Categories {
 		list = append(list, c)
 	}
@@ -17,8 +18,9 @@ func GetCategories(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateCategory(w http.ResponseWriter, r *http.Request) {
-	var category models.Category
+	w.Header().Set("Content-Type", "application/json")
 
+	var category models.Category
 	json.NewDecoder(r.Body).Decode(&category)
 
 	if category.Name == "" {
