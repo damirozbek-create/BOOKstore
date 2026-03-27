@@ -7,8 +7,9 @@ import (
 )
 
 func GetAuthors(w http.ResponseWriter, r *http.Request) {
-	var list []models.Author
+	w.Header().Set("Content-Type", "application/json")
 
+	var list []models.Author
 	for _, a := range Authors {
 		list = append(list, a)
 	}
@@ -17,8 +18,9 @@ func GetAuthors(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateAuthor(w http.ResponseWriter, r *http.Request) {
-	var author models.Author
+	w.Header().Set("Content-Type", "application/json")
 
+	var author models.Author
 	json.NewDecoder(r.Body).Decode(&author)
 
 	if author.Name == "" {
